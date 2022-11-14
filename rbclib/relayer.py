@@ -1,14 +1,14 @@
 import json
 
-from src.chainpy.eth.ethtype.amount import EthAmount
-from src.chainpy.eth.ethtype.hexbytes import EthAddress, EthHashBytes
-from src.chainpy.eventbridge.eventbridge import EventBridge
-from src.chainpy.eth.managers.configs import EntityRootConfig
-from src.chainpy.eth.ethtype.consts import ChainIndex
-from src.chainpy.eth.ethtype.account import EthAccount
-from src.chainpy.eventbridge.multichainmonitor import bootstrap_logger
-from src.rbcevents.consts import ConsensusOracleId, TokenStreamIndex, AggOracleId
-from src.rbcevents.periodicevents import BtcHashUpOracle, AuthDownOracle, PriceUpOracle
+from chainpy.eth.ethtype.amount import EthAmount
+from chainpy.eth.ethtype.hexbytes import EthAddress, EthHashBytes
+from chainpy.eventbridge.eventbridge import EventBridge
+from chainpy.eth.managers.configs import EntityRootConfig
+from chainpy.eth.ethtype.consts import ChainIndex
+from chainpy.eth.ethtype.account import EthAccount
+from chainpy.eventbridge.multichainmonitor import bootstrap_logger
+from .consts import ConsensusOracleId, TokenStreamIndex, AggOracleId
+from .periodicevents import BtcHashUpOracle, AuthDownOracle, PriceUpOracle
 import time
 
 from utils import RELAYER_VERSION

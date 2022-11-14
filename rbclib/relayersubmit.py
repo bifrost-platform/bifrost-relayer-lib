@@ -1,9 +1,9 @@
 from typing import TYPE_CHECKING, Union
 
-from ..chainpy.eventbridge.chaineventabc import ChainEventABC
-from ..chainpy.eth.ethtype.account import EthAccount
-from ..chainpy.eth.ethtype.hexbytes import EthHashBytes, EthHexBytes
-from ..chainpy.eth.ethtype.utils import recursive_tuple_to_list
+from chainpy.eventbridge.chaineventabc import ChainEventABC
+from chainpy.eth.ethtype.account import EthAccount
+from chainpy.eth.ethtype.hexbytes import EthHashBytes, EthHexBytes
+from chainpy.eth.ethtype.utils import recursive_tuple_to_list
 
 if TYPE_CHECKING:
     from .chainevents import RbcEvent, ValidatorSetUpdatedEvent

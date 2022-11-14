@@ -6,20 +6,20 @@ import eth_abi
 from .consts import RBCMethodIndex, TokenStreamIndex, ChainEventStatus
 from .relayersubmit import PollSubmit, AggregatedRoundUpSubmit
 from .utils import *
-from ..chainpy.eventbridge.chaineventabc import ChainEventABC
-from ..chainpy.eventbridge.multichainmonitor import bootstrap_logger
-from ..chainpy.eventbridge.utils import timestamp_msec, transaction_commit_time_sec
+from chainpy.eventbridge.chaineventabc import ChainEventABC
+from chainpy.eventbridge.multichainmonitor import bootstrap_logger
+from chainpy.eventbridge.utils import timestamp_msec, transaction_commit_time_sec
 
-from ..chainpy.eth.managers.eventobj import DetectedEvent
-from ..chainpy.eth.ethtype.amount import EthAmount
-from ..chainpy.eth.ethtype.consts import ChainIndex
-from ..chainpy.eth.ethtype.hexbytes import EthAddress, EthHashBytes, EthHexBytes
-from ..chainpy.eth.ethtype.utils import recursive_tuple_to_list, ETH_HASH
+from chainpy.eth.managers.eventobj import DetectedEvent
+from chainpy.eth.ethtype.amount import EthAmount
+from chainpy.eth.ethtype.consts import ChainIndex
+from chainpy.eth.ethtype.hexbytes import EthAddress, EthHashBytes, EthHexBytes
+from chainpy.eth.ethtype.utils import recursive_tuple_to_list, ETH_HASH
 
-from ..chainpy.logger import Logger, formatted_log
+from chainpy.logger import Logger, formatted_log
 
 if TYPE_CHECKING:
-    from src.relayer import Relayer
+    from rbclib.relayer import Relayer
 
 
 proto_logger = Logger("Protocol", logging.DEBUG)

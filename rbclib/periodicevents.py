@@ -2,23 +2,23 @@ import logging
 from typing import Optional, TYPE_CHECKING
 import eth_abi
 
-from src.chainpy.logger import formatted_log
-from .chainevents import NoneParams, SOCKET_CONTRACT_NAME
-from ..chainpy.eventbridge.chaineventabc import CallParamTuple, SendParamTuple
-from ..chainpy.eventbridge.periodiceventabc import PeriodicEventABC
-from ..chainpy.eventbridge.utils import timestamp_msec
-from ..chainpy.btc.managers.simplerpccli import SimpleBtcClient
-from ..chainpy.eth.ethtype.consts import ChainIndex
-from ..chainpy.eth.ethtype.hexbytes import EthHashBytes
-from ..chainpy.logger import Logger
-from ..chainpy.offchain.priceaggregator import PriceOracleAgg
-from src.rbcevents.consts import ConsensusOracleId
+from chainpy.logger import formatted_log
+from chainpy.eventbridge.chaineventabc import CallParamTuple, SendParamTuple
+from chainpy.eventbridge.periodiceventabc import PeriodicEventABC
+from chainpy.eventbridge.utils import timestamp_msec
+from chainpy.btc.managers.simplerpccli import SimpleBtcClient
+from chainpy.eth.ethtype.consts import ChainIndex
+from chainpy.eth.ethtype.hexbytes import EthHashBytes
+from chainpy.logger import Logger
+from chainpy.offchain.priceaggregator import PriceOracleAgg
 
+from .chainevents import NoneParams, SOCKET_CONTRACT_NAME
 from .relayersubmit import SocketSignature
+from .consts import ConsensusOracleId
 from .utils import log_invalid_flow
 
 if TYPE_CHECKING:
-    from src.relayer import Relayer
+    from rbclib.relayer import Relayer
 
 
 price_logger = Logger("PriceUp", logging.INFO)

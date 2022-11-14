@@ -1,16 +1,16 @@
 import logging
 
-from src.chainpy.eventbridge.periodiceventabc import PeriodicEventABC
+from chainpy.eventbridge.periodiceventabc import PeriodicEventABC
 from typing import TYPE_CHECKING, Optional
 
 from .chainevents import NoneParams
-from ..chainpy.eth.ethtype.consts import ChainIndex
-from ..chainpy.eventbridge.chaineventabc import CallParamTuple, SendParamTuple
-from ..chainpy.eventbridge.utils import timestamp_msec
-from ..chainpy.logger import formatted_log, Logger
+from chainpy.eth.ethtype.consts import ChainIndex
+from chainpy.eventbridge.chaineventabc import CallParamTuple, SendParamTuple
+from chainpy.eventbridge.utils import timestamp_msec
+from chainpy.logger import formatted_log, Logger
 
 if TYPE_CHECKING:
-    from src.relayer import Relayer
+    from rbclib.relayer import Relayer
 
 
 heart_beat_logger = Logger("HeartBeat", logging.INFO)

@@ -1,8 +1,8 @@
 import json
 import unittest
-from ..chainpy.eth.ethtype.consts import ChainIndex, EnumInterface, concat_2enum_as_int
-from ..chainpy.eth.ethtype.hexbytes import EthHexBytes
-from ..chainpy.eth.ethtype.utils import ETH_HASH
+from chainpy.eth.ethtype.consts import ChainIndex, EnumInterface, concat_2enum_as_int
+from chainpy.eth.ethtype.hexbytes import EthHexBytes
+from chainpy.eth.ethtype.utils import ETH_HASH
 
 
 class TokenIndex(EnumInterface):

@@ -1,11 +1,12 @@
-from src.chainpy import EthAmount
-from src.chainpy import EthReceipt
-from src.chainpy import ChainIndex
-from src.chainpy import EthAddress, EthHexBytes, EthHashBytes
-from src.chainpy import EthTransaction
-from src.chainpy import recursive_tuple_to_list
-from src.chainpy import EntityRootConfig, MultiChainManager
-from src.rbcevents import RBCMethodIndex, TokenStreamIndex
+from chainpy.eth.ethtype.amount import EthAmount
+from chainpy.eth.ethtype.chaindata import EthReceipt
+from chainpy.eth.ethtype.consts import ChainIndex
+from chainpy.eth.ethtype.hexbytes import EthAddress, EthHexBytes, EthHashBytes
+from chainpy.eth.ethtype.transaction import EthTransaction
+from chainpy.eth.ethtype.utils import recursive_tuple_to_list
+from chainpy.eth.managers.configs import EntityRootConfig
+from chainpy.eth.managers.multichainmanager import MultiChainManager
+from .consts import RBCMethodIndex, TokenStreamIndex
 
 
 class UserSubmit:

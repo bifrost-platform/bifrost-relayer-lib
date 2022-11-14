@@ -11,7 +11,7 @@ from .consts import ConsensusOracleId, TokenStreamIndex, AggOracleId
 from .periodicevents import BtcHashUpOracle, AuthDownOracle, PriceUpOracle
 import time
 
-from utils import RELAYER_VERSION
+RELAYER_VERSION = "v0.2.0"
 
 BIFROST_VALIDATOR_HISTORY_LIMIT_BLOCKS = 6
 BOOTSTRAP_OFFSET_ROUNDS = 5

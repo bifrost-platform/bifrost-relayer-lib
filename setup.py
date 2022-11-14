@@ -5,6 +5,6 @@ setup(
     version="v0.2.0",
     package=find_packages,
     install_requires=[
-        "git@github.com/bifrost-platform/bifrost-python-lib.git"
+        "git@github.com:bifrost-platform/bifrost-python-lib.git"
     ]
 )

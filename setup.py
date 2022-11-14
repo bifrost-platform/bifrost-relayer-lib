@@ -4,5 +4,7 @@ setup(
     name="bifrost-relayer-lib",
     version="v0.2.0",
     package=find_packages,
-    install_requires=[]
+    install_requires=[
+        "git+https://github.com/bifrost-platform/bifrost-python-lib.git"
+    ]
 )

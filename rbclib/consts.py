@@ -177,7 +177,7 @@ class TestEnum(unittest.TestCase):
         enum_dict["ChainIndex"] = TestEnum.generate_dict_for_index(ChainIndex)
         enum_dict["TokenIndex"] = TestEnum.generate_dict_for_index(TokenIndex)
 
-        enum_dict["TokenStreamIndex"] = TestEnum.generate_dict_for_index(TokenStreamIndex)
+        enum_dict["BridgeIndex"] = TestEnum.generate_dict_for_index(BridgeIndex)
         enum_dict["ChainEventStatus"] = TestEnum.generate_dict_for_index(ChainEventStatus)
         enum_dict["RBCMethodIndex"] = TestEnum.generate_dict_for_index(RBCMethodIndex)
         enum_dict["AggOracleId"] = TestEnum.generate_dict_for_index(AggOracleId)

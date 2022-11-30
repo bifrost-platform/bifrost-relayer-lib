@@ -3,7 +3,7 @@ from typing import Optional, Union, Tuple, TYPE_CHECKING, Dict, List
 
 import eth_abi
 
-from .consts import RBCMethodIndex, TokenStreamIndex, ChainEventStatus
+from .consts import RBCMethodIndex, BridgeIndex, ChainEventStatus
 from .relayersubmit import PollSubmit, AggregatedRoundUpSubmit
 from .utils import *
 from chainpy.eventbridge.chaineventabc import ChainEventABC
@@ -227,13 +227,13 @@ class RbcEvent(ChainEventABC):
 
     @property
     def method_params(self) -> Tuple[
-        TokenStreamIndex, TokenStreamIndex, EthAddress, EthAddress, EthAmount, EthHexBytes
+        BridgeIndex, BridgeIndex, EthAddress, EthAddress, EthAmount, EthHexBytes
     ]:
         unzipped_decoded_data = self.decoded_data[0]
         params_tuple = unzipped_decoded_data[3]
         return (
-            TokenStreamIndex(params_tuple[0]),
-            TokenStreamIndex(params_tuple[1]),
+            BridgeIndex(params_tuple[0]),
+            BridgeIndex(params_tuple[1]),
             EthAddress(params_tuple[2]),
             EthAddress(params_tuple[3]),
             EthAmount(params_tuple[4]),

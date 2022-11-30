@@ -6,7 +6,7 @@ from chainpy.eth.ethtype.transaction import EthTransaction
 from chainpy.eth.ethtype.utils import recursive_tuple_to_list
 from chainpy.eth.managers.configs import EntityRootConfig
 from chainpy.eth.managers.multichainmanager import MultiChainManager
-from .consts import RBCMethodIndex, TokenStreamIndex
+from .consts import RBCMethodIndex, BridgeIndex
 
 
 class UserSubmit:
@@ -16,13 +16,13 @@ class UserSubmit:
     def __init__(self,
                  method: RBCMethodIndex,
                  dst_chain_index: ChainIndex,
-                 token_index0: TokenStreamIndex,
+                 token_index0: BridgeIndex,
                  apply_addr: EthAddress,
                  amount: EthAmount):
         inst_tuple = (dst_chain_index.value, method.value)
         action_param_tuple = (
             token_index0.value,  # first token_index
-            TokenStreamIndex.NONE.value,  # second token_index
+            BridgeIndex.NONE.value,  # second token_index
             apply_addr.with_checksum(),  # from address
             apply_addr.with_checksum(),  # to address
             amount.int(),
@@ -40,7 +40,7 @@ class User(MultiChainManager):
 
     def token_approve(self,
                       chain_index: ChainIndex,
-                      token_index: TokenStreamIndex,
+                      token_index: BridgeIndex,
                       target_addr: EthAddress,
                       amount: EthAmount
                       ) -> (EthTransaction, EthHashBytes):
@@ -65,7 +65,7 @@ class User(MultiChainManager):
 
     def world_token_balance_of(self,
                                chain_idx: ChainIndex,
-                               token_index: TokenStreamIndex,
+                               token_index: BridgeIndex,
                                target_addr: EthAddress = None) -> EthAmount:
         target_addr = self.active_account.address if target_addr is None else target_addr
         value = self.world_call(
@@ -99,7 +99,7 @@ class User(MultiChainManager):
     def build_cross_action_tx(self,
                               src_chain: ChainIndex,
                               dst_chain: ChainIndex,
-                              token_index: TokenStreamIndex,
+                              token_index: BridgeIndex,
                               cross_action_index: RBCMethodIndex,
                               amount: EthAmount) -> EthTransaction:
         user_request = UserSubmit(
@@ -118,7 +118,7 @@ class User(MultiChainManager):
     def send_cross_action(self,
                           src_chain: ChainIndex,
                           dst_chain: ChainIndex,
-                          token_index: TokenStreamIndex,
+                          token_index: BridgeIndex,
                           cross_action_index: RBCMethodIndex,
                           amount: EthAmount) -> EthHashBytes:
         tx = self.build_cross_action_tx(src_chain, dst_chain, token_index, cross_action_index, amount)
@@ -128,7 +128,7 @@ class User(MultiChainManager):
     def send_cross_action_and_wait_receipt(self,
                                            src_chain: ChainIndex,
                                            dst_chain: ChainIndex,
-                                           token_index: TokenStreamIndex,
+                                           token_index: BridgeIndex,
                                            cross_action_index: RBCMethodIndex,
                                            amount: EthAmount) -> EthReceipt:
         tx_hash = self.send_cross_action(src_chain, dst_chain, token_index, cross_action_index, amount)

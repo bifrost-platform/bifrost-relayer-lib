@@ -7,7 +7,7 @@ from chainpy.eth.managers.configs import EntityRootConfig
 from chainpy.eth.ethtype.consts import ChainIndex
 from chainpy.eth.ethtype.account import EthAccount
 from chainpy.eventbridge.multichainmonitor import bootstrap_logger
-from .consts import ConsensusOracleId, TokenStreamIndex, AggOracleId
+from .consts import ConsensusOracleId, BridgeIndex, AggOracleId
 from .periodicevents import BtcHashUpOracle, AuthDownOracle, PriceUpOracle
 import time
 
@@ -275,12 +275,12 @@ class Relayer(EventBridge):
         oracle_id_bytes = oracle_id.formatted_bytes()
         return self.world_call(ChainIndex.BIFROST, "oracle", "get_latest_round", [oracle_id_bytes])[0]
 
-    def fetch_price_from_oracle(self, token: TokenStreamIndex) -> EthAmount:
+    def fetch_price_from_oracle(self, token: BridgeIndex) -> EthAmount:
         oid = AggOracleId.from_token_name(token.token_name())
         result = self.world_call(
             ChainIndex.BIFROST, "oracle", "latest_oracle_data", [oid.formatted_bytes()])[0]
 
-        if token == TokenStreamIndex.USDT_ETHEREUM or token == TokenStreamIndex.USDC_ETHEREUM:
+        if token == BridgeIndex.USDT_ETHEREUM or token == BridgeIndex.USDC_ETHEREUM:
             decimal = 6
         else:
             decimal = 18

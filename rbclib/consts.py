@@ -26,7 +26,7 @@ class TokenIndex(EnumInterface):
         return 8
 
 
-class TokenStreamIndex(EnumInterface):
+class BridgeIndex(EnumInterface):
     NONE             = 0x00000000000000000000000000000000
 
     # tokens relate to the Bifrost coin
@@ -74,17 +74,17 @@ class TokenStreamIndex(EnumInterface):
             return False
 
         if home_chain == ChainIndex.BIFROST:
-            return self == TokenStreamIndex.BFC_BIFROST
+            return self == BridgeIndex.BFC_BIFROST
         if home_chain == ChainIndex.ETHEREUM:
-            return self == TokenStreamIndex.ETH_ETHEREUM
+            return self == BridgeIndex.ETH_ETHEREUM
         if home_chain == ChainIndex.BINANCE:
-            return self == TokenStreamIndex.BNB_BINANCE
+            return self == BridgeIndex.BNB_BINANCE
         if home_chain == ChainIndex.POLYGON:
-            return self == TokenStreamIndex.MATIC_POLYGON
+            return self == BridgeIndex.MATIC_POLYGON
         if home_chain == ChainIndex.KLAYTN:
-            return self == TokenStreamIndex.KLAY_KLAYTN
+            return self == BridgeIndex.KLAY_KLAYTN
         if home_chain == ChainIndex.AVALANCHE:
-            return self == TokenStreamIndex.AVAX_AVALANCHE
+            return self == BridgeIndex.AVAX_AVALANCHE
         raise Exception("Not supported chain: {}".format(home_chain))
 
 

@@ -859,15 +859,13 @@ class ValidatorSetUpdatedEvent(ChainEventABC):
             sigs.append([r, s, v])
 
         types_str_list = ["uint256", "address[]"]
-        _round = decoded_roundup_event[1][0]
-        sorted_validator_list = sorted([EthAddress(addr) for addr in decoded_roundup_event[1][1]])
-        data_to_sig = eth_abi.encode_abi(types_str_list, [_round, sorted_validator_list])
+        data_to_sig = eth_abi.encode_abi(types_str_list, [self.round, self.sorted_validator_list])
         sig_msg = EthHashBytes(ETH_HASH(data_to_sig).digest())
 
         return {
-            "event_status": ChainEventStatus(decoded_roundup_event[0]),
-            "validator_round": _round,
-            "validator_list": [EthAddress(addr) for addr in decoded_roundup_event[1][1]],
+            "event_status": self.status,
+            "validator_round": self.round,
+            "validator_list": [EthAddress(addr) for addr in decoded_roundup_event[1][1]], # self.sorted_validator_list?
             "signing_msg_hash": sig_msg,
             "signatures": [[EthHashBytes(sig[0]), EthHashBytes(sig[1]), EthHexBytes(sig[2])] for sig in sigs]
         }

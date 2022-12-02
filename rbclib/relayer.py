@@ -265,7 +265,7 @@ class Relayer(EventBridge):
 
     def fetch_socket_rbc_sigs(self, target_chain: ChainIndex, request_id: tuple, chain_event_status: ChainEventStatus):
         sigs = self.world_call(target_chain, "socket", "get_signatures", [
-            request_id, chain_event_status.formatted_hex()
+            request_id, int(chain_event_status.formatted_hex(), 16)
         ])
         return sigs[0]
 

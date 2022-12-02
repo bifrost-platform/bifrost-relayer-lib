@@ -7,7 +7,7 @@ from chainpy.eth.managers.configs import EntityRootConfig
 from chainpy.eth.ethtype.consts import ChainIndex
 from chainpy.eth.ethtype.account import EthAccount
 from chainpy.eventbridge.multichainmonitor import bootstrap_logger
-from .consts import ConsensusOracleId, BridgeIndex, AggOracleId
+from .consts import ConsensusOracleId, BridgeIndex, AggOracleId, ChainEventStatus
 from .periodicevents import BtcHashUpOracle, AuthDownOracle, PriceUpOracle
 import time
 
@@ -263,8 +263,10 @@ class Relayer(EventBridge):
                 majority = self.world_call(target_chain_index, "relayer_authority", "previous_majority", [rnd, is_initial])[0]
         return majority
 
-    def fetch_socket_rbc_sigs(self, target_chain: ChainIndex, request_id: tuple):
-        sigs = self.world_call(target_chain, "socket", "get_signatures", [request_id])
+    def fetch_socket_rbc_sigs(self, target_chain: ChainIndex, request_id: tuple, chain_event_status: ChainEventStatus):
+        sigs = self.world_call(target_chain, "socket", "get_signatures", [
+            request_id, chain_event_status.formatted_hex()
+        ])
         return sigs[0]
 
     def fetch_socket_vsp_sigs(self, target_chain: ChainIndex, rnd: int):

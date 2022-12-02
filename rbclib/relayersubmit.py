@@ -1,3 +1,4 @@
+import eth_abi
 from typing import TYPE_CHECKING, Union
 
 from chainpy.eventbridge.chaineventabc import ChainEventABC
@@ -93,11 +94,10 @@ class SubmitWithSig:
         self.sigs.merge_sigs(socket_sigs)
         return self
 
-    def _sort_sigs(self):
+    def _sort_sigs(self, msg: EthHexBytes):
         if self.sigs.size == 1:
             return None
 
-        msg = self.event.detected_event.data
         sig_dict = dict()
 
         clone_sigs = self.sigs
@@ -131,7 +131,7 @@ class PollSubmit(SubmitWithSig):
 
         # prepare sig to return
         # status = decoded_socket_msg_contents[1]
-        self._sort_sigs()
+        self._sort_sigs(self.event.detected_event.data)
 
         # return params
         params = [decoded_socket_msg_contents, self.sigs.tuple(), forced_fail]
@@ -159,7 +159,10 @@ class AggregatedRoundUpSubmit(SubmitWithSig):
         if self.sigs is None:
             raise Exception("Not initiated sig")
 
-        self._sort_sigs()
+        types_str_list = ["uint256", "address[]"]
+        data_to_sig = eth_abi.encode_abi(types_str_list, [self.round, self.validator_list])
+        data_to_sig_obj = EthHexBytes(data_to_sig)
+        self._sort_sigs(data_to_sig_obj)
 
         submit_param = [self.round, self.validator_list, self.sigs.tuple()]
         return [submit_param]

@@ -159,5 +159,7 @@ class AggregatedRoundUpSubmit(SubmitWithSig):
         if self.sigs is None:
             raise Exception("Not initiated sig")
 
+        self._sort_sigs()
+
         submit_param = [self.round, self.validator_list, self.sigs.tuple()]
         return [submit_param]
